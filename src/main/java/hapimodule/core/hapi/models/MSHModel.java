@@ -2,7 +2,7 @@ package hapimodule.core.hapi.models;
 
 /**
  *
- * @author Ted
+ * @author Teddy Odhiambo
  */
 public class MSHModel {
     private String applicationName;

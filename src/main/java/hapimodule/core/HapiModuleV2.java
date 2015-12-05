@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author Stanslaus Odhiambo
+ * @author Teddy Odhiambo
  */
 public class HapiModuleV2 {
 
