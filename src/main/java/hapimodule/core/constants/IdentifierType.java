@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.kemricdc.constants;
+package hapimodule.core.constants;
 
 /**
  *
- * @author Stanslaus Odhiambo
+ * @author Teddy Odhiambo
  */
 public enum IdentifierType {
     
-    
-
     CCC_NUMBER("CCC_NUMBER"),
     ANC_NUMBER("ANC_NUMBER"),
     PMTCT_NUMBER("PMTCT_NUMBER"),
@@ -22,10 +15,7 @@ public enum IdentifierType {
     PID_NUMBER("PID_NUMBER"),
     HEI_NUMBER("HEI_NUMBER");
     
-    
-    
     private final String value;
-    
     
     public String getValue(){
         return value;
@@ -33,5 +23,4 @@ public enum IdentifierType {
     private IdentifierType(String value){
         this.value=value;
     }
-
 }

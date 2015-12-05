@@ -1,4 +1,4 @@
-package org.kemricdc.entities;
+package hapimodule.core.entities;
 // Generated Nov 28, 2014 11:52:32 AM by Hibernate Tools 3.6.0
 
 

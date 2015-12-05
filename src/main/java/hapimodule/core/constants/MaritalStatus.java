@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package org.kemricdc.constants;
+package hapimodule.core.constants;
 
 /**
  *
- * @author Stanslaus Odhiambo
+ * @author Teddy Odhiambo
  */
 public enum MaritalStatus {
     
@@ -27,7 +21,5 @@ public enum MaritalStatus {
     }
     public String getValue(){
         return value;
-        
-    }
-    
+    }  
 }

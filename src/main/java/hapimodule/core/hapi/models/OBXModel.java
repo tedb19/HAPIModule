@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.kemricdc.hapi.oru;
+package hapimodule.core.hapi.models;
 
 import ca.uhn.hl7v2.model.v25.datatype.SI;
 import java.util.Date;
@@ -11,13 +6,11 @@ import java.util.Objects;
 
 /**
  *
- * @author Stanslaus Odhiambo
+ * @author Teddy Odhiambo
  */
-public class OruFiller {
+public class OBXModel {
 
-    
-
-    public OruFiller() {
+    public OBXModel() {
         this.segmentId = "OBX";
     }
 
@@ -253,10 +246,10 @@ public class OruFiller {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof OruFiller)) {
+        if (!(obj instanceof OBXModel)) {
             return false;
         }
-        OruFiller other = (OruFiller) obj;
+        OBXModel other = (OBXModel) obj;
         return this.observationIdentifierText.equals(other.observationIdentifierText);
     }
 
