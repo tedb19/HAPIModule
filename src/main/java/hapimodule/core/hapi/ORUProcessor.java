@@ -1,29 +1,26 @@
 package hapimodule.core.hapi;
 
-import hapimodule.core.hapi.models.OBXModel;
+import hapimodule.core.hapi.models.OBXSegment;
 import ca.uhn.hl7v2.HL7Exception;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import hapimodule.core.entities.PatientSource;
 import hapimodule.core.entities.Person;
 import hapimodule.core.hapi.wrappers.ORUWrapper;
-import hapimodule.core.hapi.models.MSHModel;
+import hapimodule.core.hapi.models.MSHSegment;
 
 public class ORUProcessor {
 
     final static Logger logger = Logger.getLogger(ORUProcessor.class.getName());
-    List<OBXModel> fillers;
+    List<OBXSegment> fillers;
     private final Person person;
-    private final PatientSource patientSource;
-    private final MSHModel mshModel;
+    private final MSHSegment mshSegment;
 
-    public ORUProcessor(Person person,PatientSource patientSource, List<OBXModel> fillers, MSHModel mshModel) {
+    public ORUProcessor(Person person, List<OBXSegment> fillers, MSHSegment mshSegment) {
         this.person = person;
-        this.patientSource = patientSource;
         this.fillers=fillers;
-        this.mshModel = mshModel;
+        this.mshSegment = mshSegment;
 
     }
 
@@ -32,9 +29,9 @@ public class ORUProcessor {
         try {
             ORUWrapper message = new ORUWrapper();
             message.initQuickstart("ORU","R01", "P");
-            message.setMessageHeader(mshModel);
-            message.setPatientDemographics(person, patientSource);
-            message.setOrderObservation(mshModel, fillers);
+            message.setMessageHeader(mshSegment);
+            message.setPatientDemographics(person);
+            message.setOrderObservation(mshSegment, fillers);
             hl7 = message.encode();
             
         } catch (HL7Exception|IOException ex) {

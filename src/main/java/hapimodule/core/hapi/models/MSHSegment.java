@@ -4,14 +4,14 @@ package hapimodule.core.hapi.models;
  *
  * @author Teddy Odhiambo
  */
-public class MSHModel {
+public class MSHSegment {
     private String applicationName;
     private String facilityName;
     private String MFLCode;
     private String CDSName;
     private String CDSApplicationName;
 
-    public MSHModel(String applicationName, String facilityName, String MFLCode, String CDSName,
+    public MSHSegment(String applicationName, String facilityName, String MFLCode, String CDSName,
             String CDSApplicationName) {
         this.applicationName = applicationName;
         this.facilityName = facilityName;

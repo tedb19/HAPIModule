@@ -3,7 +3,7 @@ package hapimodule.core.hapi;
 import ca.uhn.hl7v2.HL7Exception;
 import hapimodule.core.entities.PatientSource;
 import hapimodule.core.entities.Person;
-import hapimodule.core.hapi.models.MSHModel;
+import hapimodule.core.hapi.models.MSHSegment;
 import hapimodule.core.hapi.wrappers.ADTWrapper;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,12 +17,12 @@ public class ADTProcessor {
     final static Logger logger = Logger.getLogger(ADTProcessor.class.getName());
     private final Person person;
     private final PatientSource patientSource;
-    private final MSHModel mshModel;
+    private final MSHSegment mshSegment;
     
-    public ADTProcessor(Person person,PatientSource patientSource, MSHModel mshModel){
+    public ADTProcessor(Person person,PatientSource patientSource, MSHSegment mshSegment){
         this.person = person;
         this.patientSource = patientSource;
-        this.mshModel = mshModel;
+        this.mshSegment = mshSegment;
     }
     
     public String generateADT(String triggerEvent){
@@ -30,7 +30,7 @@ public class ADTProcessor {
         try {
             ADTWrapper message = new ADTWrapper();
             message.initQuickstart("ADT", triggerEvent, "P");
-            message.setMessageHeader(mshModel);
+            message.setMessageHeader(mshSegment);
             message.setPatientDemographics(person, patientSource);
             hl7 = message.encode();
             

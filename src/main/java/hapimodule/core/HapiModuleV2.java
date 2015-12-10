@@ -9,8 +9,8 @@ import hapimodule.core.entities.Person;
 import hapimodule.core.entities.PersonIdentifier;
 import hapimodule.core.hapi.ADTProcessor;
 import hapimodule.core.hapi.ORUProcessor;
-import hapimodule.core.hapi.models.MSHModel;
-import hapimodule.core.hapi.models.OBXModel;
+import hapimodule.core.hapi.models.MSHSegment;
+import hapimodule.core.hapi.models.OBXSegment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +38,6 @@ public class HapiModuleV2 {
         String cdsName = "REGIONAL SERVER";
         String cdsApplicationName = "MIRTH CDS";
         
-        System.out.println("Host: "+host);
         Person person = new Person();
         person.setFirstName("stanslaus");
         person.setMiddleName("Otieno");
@@ -74,14 +73,14 @@ public class HapiModuleV2 {
         PatientSource patientSrc = new PatientSource();
         patientSrc.setMFL_Code("123456");
         patientSrc.setPatientSourceName("TB_CLINIC");
-        //Leave this error for the time..reminds me of what is to be done.
-        //No use of null values
+        
+        person.setPatientSource(patientSrc);
 
 //        Ensure person fields populated before passing to the constructor
-        List<OBXModel> fillers = new ArrayList<>();
+        List<OBXSegment> fillers = new ArrayList<>();
         
-        //forming a sample OBXModel object
-        OBXModel filler=new OBXModel();
+        //forming a sample OBXSegment object
+        OBXSegment filler=new OBXSegment();
         filler.setObservationIdentifier(null);
         filler.setObservationIdentifierText("WHO_STAGE");
         filler.setCodingSystem("AS4/SNOMED");
@@ -92,8 +91,8 @@ public class HapiModuleV2 {
         filler.setDateOfLastNormalValue(new Date());
         filler.setDateTimeOfObservation(new Date());
         
-        //forming a sample OBXModel object
-        OBXModel filler1=new OBXModel();
+        //forming a sample OBXSegment object
+        OBXSegment filler1=new OBXSegment();
         filler1.setObservationIdentifier(null);
         filler1.setObservationIdentifierText("HIV_DIAGNOSIS");
         filler1.setCodingSystem("AS4/SNOMED");
@@ -107,9 +106,9 @@ public class HapiModuleV2 {
         fillers.add(filler1);
         fillers.add(filler);
         
-        MSHModel msh = new MSHModel(applicationName, facilityName, mfl_code, cdsName, cdsApplicationName);
+        MSHSegment msh = new MSHSegment(applicationName, facilityName, mfl_code, cdsName, cdsApplicationName);
         
-        ORUProcessor oruProcessor = new ORUProcessor(person, patientSrc, fillers, msh); 
+        ORUProcessor oruProcessor = new ORUProcessor(person, fillers, msh); 
         ADTProcessor adtProcessor = new ADTProcessor(person, patientSrc, msh);
         System.out.println("here\n");
         System.out.println(oruProcessor.generateORU());

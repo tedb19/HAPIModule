@@ -8,7 +8,7 @@ import ca.uhn.hl7v2.model.v24.segment.PV1;
 import hapimodule.core.entities.PatientSource;
 import hapimodule.core.entities.Person;
 import hapimodule.core.entities.PersonIdentifier;
-import hapimodule.core.hapi.models.MSHModel;
+import hapimodule.core.hapi.models.MSHSegment;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,15 +21,15 @@ public class ADTWrapper extends ADT_A01{
     /*
     * Populates the MSH segment of the ADT
     */
-    public MSH setMessageHeader(MSHModel mshModel){
+    public MSH setMessageHeader(MSHSegment mshSegment){
         MSH msh = getMSH();
         
         try {
-            msh.getSendingApplication().getNamespaceID().setValue(mshModel.getApplicationName());
-            msh.getSendingFacility().getNamespaceID().setValue(mshModel.getFacilityName());
-            msh.getSendingFacility().getUniversalID().setValue(mshModel.getMFLCode());
-            msh.getReceivingApplication().getNamespaceID().setValue(mshModel.getCDSName());
-            msh.getReceivingFacility().getNamespaceID().setValue(mshModel.getCDSApplicationName());
+            msh.getSendingApplication().getNamespaceID().setValue(mshSegment.getApplicationName());
+            msh.getSendingFacility().getNamespaceID().setValue(mshSegment.getFacilityName());
+            msh.getSendingFacility().getUniversalID().setValue(mshSegment.getMFLCode());
+            msh.getReceivingApplication().getNamespaceID().setValue(mshSegment.getCDSName());
+            msh.getReceivingFacility().getNamespaceID().setValue(mshSegment.getCDSApplicationName());
             
         } catch (DataTypeException ex) {
             Logger.getLogger(ORUWrapper.class.getName()).log(Level.SEVERE, null, ex);

@@ -2,18 +2,54 @@ package hapimodule.core.hapi.models;
 
 import ca.uhn.hl7v2.model.v25.datatype.SI;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  *
  * @author Teddy Odhiambo
  */
-public class OBXModel {
+public class OBXSegment {
 
-    public OBXModel() {
+    private String segmentId;
+    private SI setId;
+    private ValueType valueType;
+    private String observationSubId;
+    private String observationValue;
+    private String units;
+    private String referencesRange;
+    private String abnormalFlags;
+    private String probability;
+    private String natureOfAbnormalTest;
+    private String resultStatus;
+    private Date dateOfLastNormalValue;
+    private String userDefinedAccessChecks;
+    private Date dateTimeOfObservation;
+    private String producerId;
+    private String responsibleObserverId;
+    private String responsibleObserverGivenName;
+    
+    private String observationMethod;
+
+    //New Fields
+    private String observationIdentifier;
+    private String observationIdentifierText;
+    private String codingSystem;
+    
+    public OBXSegment() {
         this.segmentId = "OBX";
     }
-
+    
+    public OBXSegment(String observationIdentifierText, String observationValue, Date dateTimeOfObservation) {
+        this.segmentId = "OBX";
+        this.observationIdentifier = null;
+        this.codingSystem = "ICD10";
+        this.observationSubId = null;
+        this.units = null;
+        this.resultStatus = "P";
+        this.dateTimeOfObservation = dateTimeOfObservation;
+        this.observationIdentifierText = observationIdentifierText;
+        this.observationValue = observationValue;
+    }
+    
     public String getSegmentId() {
         return segmentId;
     }
@@ -216,50 +252,7 @@ public class OBXModel {
 
     }
 
-    private String segmentId;
-    private SI setId;
-    private ValueType valueType;
-    private String observationSubId;
-    private String observationValue;
-    private String units;
-    private String referencesRange;
-    private String abnormalFlags;
-    private String probability;
-    private String natureOfAbnormalTest;
-    private String resultStatus;
-    private Date dateOfLastNormalValue;
-    private String userDefinedAccessChecks;
-    private Date dateTimeOfObservation;
-    private String producerId;
-    private String responsibleObserverId;
-    private String responsibleObserverGivenName;
-    
-    private String observationMethod;
 
-    //New Fields
-    private String observationIdentifier;
-    private String observationIdentifierText;
-    private String codingSystem;
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof OBXModel)) {
-            return false;
-        }
-        OBXModel other = (OBXModel) obj;
-        return this.observationIdentifierText.equals(other.observationIdentifierText);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.observationValue);
-        hash = 31 * hash + Objects.hashCode(this.observationIdentifierText);
-        return hash;
-    }
 
    
 }
