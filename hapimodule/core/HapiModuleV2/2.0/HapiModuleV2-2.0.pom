@@ -16,41 +16,41 @@
     <dependencies>
         <!-- This is the core HAPI library -->
         <dependency>
-          <groupId>ca.uhn.hapi</groupId>
-          <artifactId>hapi-base</artifactId>
-          <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-base</artifactId>
+            <version>2.2</version>
         </dependency>       
 
         <!-- These are structure JARs for HL7 v2.1 and 2.5.1 (as an example) -->
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v22</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v22</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v23</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v23</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v231</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v231</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v24</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v24</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v25</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v25</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
-                <groupId>ca.uhn.hapi</groupId>
-                <artifactId>hapi-structures-v251</artifactId>
-                <version>2.2</version>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v251</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
             <groupId>ca.uhn.hapi</groupId>
@@ -109,18 +109,20 @@
                     <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
                     <outputDirectory>${project.build.directory}/maven-repository</outputDirectory> <!-- matches distribution management repository url above -->
                     <branch>refs/heads/mvn-repository</branch>                       <!-- remote branch name -->
-                    <includes><include>**/*</include></includes>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
                     <repositoryName>HAPIModule</repositoryName>      <!-- github repo name -->
                     <repositoryOwner>tedb19</repositoryOwner>    <!-- github username  -->
                 </configuration>
                 <executions>
-                  <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
-                  <execution>
-                    <goals>
-                      <goal>site</goal>
-                    </goals>
-                    <phase>deploy</phase>
-                  </execution>
+                    <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
