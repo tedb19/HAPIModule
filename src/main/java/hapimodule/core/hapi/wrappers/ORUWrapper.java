@@ -39,7 +39,6 @@ public class ORUWrapper extends ORU_R01{
             msh.getSendingFacility().getUniversalID().setValue(mshSegment.getMFLCode());
             msh.getReceivingApplication().getNamespaceID().setValue(mshSegment.getCDSName());
             msh.getReceivingFacility().getNamespaceID().setValue(mshSegment.getCDSApplicationName());
-            
         } catch (DataTypeException ex) {
             Logger.getLogger(ORUWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
