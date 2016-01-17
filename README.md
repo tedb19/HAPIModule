@@ -1,4 +1,4 @@
-## HAPIModule
+## HAPIModule https://travis-ci.org/tedb19/HAPIModule.svg?branch=master
 A wrapper for the [HAPI (Hl7 API) module](http://hl7api.sourceforge.net/). **HAPI** is an open-source, object-oriented HL7 2.x parser for Java.
 [HL7]( http://hl7.org ) is a standard messaging protocol/specification for the exchange of healthcare information.
 
