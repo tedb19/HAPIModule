@@ -31,13 +31,13 @@ public class HapiModuleV2 {
      */
     public static void main(String[] args) throws HL7Exception, IOException {
         
-        String host = "localhost";
         String facilityName = "TEST FACILITY";
         String mfl_code = "123456";
         String applicationName = "MIRTH CDS";
         String cdsName = "REGIONAL SERVER";
         String cdsApplicationName = "MIRTH CDS";
         
+        //create and populate a person object
         Person person = new Person();
         person.setFirstName("stanslaus");
         person.setMiddleName("Otieno");
@@ -46,71 +46,71 @@ public class HapiModuleV2 {
         person.setBirthdate(new Date());
         person.setMaritalStatusType(MaritalStatus.SEPARATED);
         
-        
-        //Set 3 identifiers
+        //add identifiers
         Set<PersonIdentifier> identifiers = new HashSet<>();
-        PersonIdentifier pi = new PersonIdentifier();
-        pi.setIdentifier("123456");
-        pi.setIdentifierType(IdentifierType.CCC_NUMBER);
-        identifiers.add(pi);
-
-        pi = new PersonIdentifier();
-        pi.setIdentifier("44444");
-        pi.setIdentifierType(IdentifierType.HEI_NUMBER);
-        identifiers.add(pi);
-
-        pi = new PersonIdentifier();
-        pi.setIdentifier("888888");
-        pi.setIdentifierType(IdentifierType.NATIONAL_ID);
-        identifiers.add(pi);
+        PersonIdentifier identifier;
         
-        //Add identifiers to the set
+        //CCC Number
+        identifier = new PersonIdentifier();
+        identifier.setIdentifier("123456");
+        identifier.setIdentifierType(IdentifierType.CCC_NUMBER);
+        identifiers.add(identifier);
+
+        //HEI Number
+        identifier = new PersonIdentifier();
+        identifier.setIdentifier("44444");
+        identifier.setIdentifierType(IdentifierType.HEI_NUMBER);
+        identifiers.add(identifier);
+
+        //National ID
+        identifier = new PersonIdentifier();
+        identifier.setIdentifier("888888");
+        identifier.setIdentifierType(IdentifierType.NATIONAL_ID);
+        identifiers.add(identifier);
+        
         person.setPersonIdentifiers(identifiers);
         
-        //set the birth date
-        person.setBirthdate(new Date());
-
+        //add patient source
         PatientSource patientSrc = new PatientSource();
         patientSrc.setMFL_Code("123456");
         patientSrc.setPatientSourceName("TB_CLINIC");
         
         person.setPatientSource(patientSrc);
-
-//        Ensure person fields populated before passing to the constructor
-        List<OBXSegment> fillers = new ArrayList<>();
+        
+        //add a collection of events recorded..
+        List<OBXSegment> obxSegments = new ArrayList<>();
         
         //forming a sample OBXSegment object
-        OBXSegment filler=new OBXSegment();
-        filler.setObservationIdentifier(null);
-        filler.setObservationIdentifierText("WHO_STAGE");
-        filler.setCodingSystem("AS4/SNOMED");
-        filler.setObservationSubId("2");
-        filler.setObservationValue("4");
-        filler.setUnits("CM");
-        filler.setResultStatus("P");
-        filler.setDateOfLastNormalValue(new Date());
-        filler.setDateTimeOfObservation(new Date());
+        OBXSegment obxSegment=new OBXSegment();
+        obxSegment.setObservationIdentifier(null);
+        obxSegment.setObservationIdentifierText("WHO_STAGE");
+        obxSegment.setCodingSystem("AS4/SNOMED");
+        obxSegment.setObservationSubId("2");
+        obxSegment.setObservationValue("4");
+        obxSegment.setUnits("CM");
+        obxSegment.setResultStatus("P");
+        obxSegment.setDateOfLastNormalValue(new Date());
+        obxSegment.setDateTimeOfObservation(new Date());
         
-        //forming a sample OBXSegment object
-        OBXSegment filler1=new OBXSegment();
-        filler1.setObservationIdentifier(null);
-        filler1.setObservationIdentifierText("HIV_DIAGNOSIS");
-        filler1.setCodingSystem("AS4/SNOMED");
-        filler1.setObservationSubId("2");
-        filler1.setObservationValue("1");
-        filler1.setUnits("CM");
-        filler1.setResultStatus("P");
-        filler1.setDateOfLastNormalValue(new Date());
-        filler1.setDateTimeOfObservation(new Date());
+        //forming a second sample OBXSegment object
+        OBXSegment secondObxSegment=new OBXSegment();
+        secondObxSegment.setObservationIdentifier(null);
+        secondObxSegment.setObservationIdentifierText("HIV_DIAGNOSIS");
+        secondObxSegment.setCodingSystem("AS4/SNOMED");
+        secondObxSegment.setObservationSubId("2");
+        secondObxSegment.setObservationValue("1");
+        secondObxSegment.setUnits("CM");
+        secondObxSegment.setResultStatus("P");
+        secondObxSegment.setDateOfLastNormalValue(new Date());
+        secondObxSegment.setDateTimeOfObservation(new Date());
         
-        fillers.add(filler1);
-        fillers.add(filler);
+        obxSegments.add(secondObxSegment);
+        obxSegments.add(obxSegment);
         
         MSHSegment msh = new MSHSegment(applicationName, facilityName, mfl_code, cdsName, cdsApplicationName);
         
-        ORUProcessor oruProcessor = new ORUProcessor(person, fillers, msh); 
-        ADTProcessor adtProcessor = new ADTProcessor(person, patientSrc, msh);
-        System.out.println("here\n");
+        ORUProcessor oruProcessor = new ORUProcessor(person, obxSegments, msh); 
+        ADTProcessor adtProcessor = new ADTProcessor(person, msh);
         System.out.println(oruProcessor.generateORU());
         System.out.println(adtProcessor.generateADT("A04"));
         System.out.println(adtProcessor.generateADT("A08"));

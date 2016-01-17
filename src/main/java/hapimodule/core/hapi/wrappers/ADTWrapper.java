@@ -5,7 +5,6 @@ import ca.uhn.hl7v2.model.v24.message.ADT_A01;
 import ca.uhn.hl7v2.model.v24.segment.MSH;
 import ca.uhn.hl7v2.model.v24.segment.PID;
 import ca.uhn.hl7v2.model.v24.segment.PV1;
-import hapimodule.core.entities.PatientSource;
 import hapimodule.core.entities.Person;
 import hapimodule.core.entities.PersonIdentifier;
 import hapimodule.core.hapi.models.MSHSegment;
@@ -40,7 +39,7 @@ public class ADTWrapper extends ADT_A01{
     /*
     * Populates the PID an the PV1 segments of the ADT
     */
-    public PID setPatientDemographics(Person person, PatientSource patientSource){ 
+    public PID setPatientDemographics(Person person){ 
         PID pid = getPID();
         try {
             pid.getPatientName(0).getFamilyName().getSurname().setValue(person.getLastName());
@@ -51,10 +50,10 @@ public class ADTWrapper extends ADT_A01{
             pid.getDateTimeOfBirth().getTimeOfAnEvent().setValue(person.getBirthdate());
             pid.getMaritalStatus().getText().setValue(person.getMaritalStatusType().getValue());
             
-            if(patientSource != null){
+            if(person.getPatientSource() != null){
                 PV1 pv1 = getPV1();
-                pv1.getPriorPatientLocation().getFacility().getUniversalID().setValue(patientSource.getMFL_Code());
-                pv1.getPriorPatientLocation().getPersonLocationType().setValue(patientSource.getPatientSourceName());
+                pv1.getPriorPatientLocation().getFacility().getUniversalID().setValue(person.getPatientSource().getMFL_Code());
+                pv1.getPriorPatientLocation().getPersonLocationType().setValue(person.getPatientSource().getPatientSourceName());
             }
         } catch (DataTypeException ex) {
             Logger.getLogger(ADTWrapper.class.getName()).log(Level.SEVERE, null, ex);

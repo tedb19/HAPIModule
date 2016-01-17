@@ -16,12 +16,10 @@ import java.util.logging.Logger;
 public class ADTProcessor {
     final static Logger logger = Logger.getLogger(ADTProcessor.class.getName());
     private final Person person;
-    private final PatientSource patientSource;
     private final MSHSegment mshSegment;
     
-    public ADTProcessor(Person person,PatientSource patientSource, MSHSegment mshSegment){
+    public ADTProcessor(Person person, MSHSegment mshSegment){
         this.person = person;
-        this.patientSource = patientSource;
         this.mshSegment = mshSegment;
     }
     
@@ -31,7 +29,7 @@ public class ADTProcessor {
             ADTWrapper message = new ADTWrapper();
             message.initQuickstart("ADT", triggerEvent, "P");
             message.setMessageHeader(mshSegment);
-            message.setPatientDemographics(person, patientSource);
+            message.setPatientDemographics(person);
             hl7 = message.encode();
             
         } catch (HL7Exception|IOException ex) {
