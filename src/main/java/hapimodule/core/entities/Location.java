@@ -1,6 +1,7 @@
 package hapimodule.core.entities;
 
 public class Location {
+
 	private String villageName;
     private String locationName;
     private String subLocationName;
