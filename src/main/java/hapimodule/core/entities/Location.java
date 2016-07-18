@@ -1,6 +1,7 @@
 package hapimodule.core.entities;
 
 public class Location {
+
 	private String villageName;
     private String locationName;
     private String subLocationName;
@@ -12,14 +13,14 @@ public class Location {
     
     public Location(String villageName, String locationName, String subLocationName, String landMark, String countyName,
             String districtName, String provinceName, String division){
-	    this.setCountyName(countyName);
-	    this.setDistrictName(districtName);
-	    this.setDivision(division);
-	    this.setLocationName(locationName);
-	    this.setProvinceName(provinceName);
-	    this.setSubLocationName(subLocationName);
-	    this.setVillageName(villageName);
-	    this.setLandMark(landMark);
+	    this.countyName = countyName;
+	    this.districtName = districtName;
+	    this.division = division;
+	    this.locationName = locationName;
+	    this.provinceName = provinceName;
+	    this.subLocationName = subLocationName;
+	    this.villageName = villageName;
+	    this.landMark = landMark;
     }
 
 	public String getVillageName() {
