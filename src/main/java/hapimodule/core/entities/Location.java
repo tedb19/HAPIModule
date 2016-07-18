@@ -23,6 +23,8 @@ public class Location {
 	    this.landMark = landMark;
     }
 
+    public Location(){}
+    
 	public String getVillageName() {
 		return villageName;
 	}
