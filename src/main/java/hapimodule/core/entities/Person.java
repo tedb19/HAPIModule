@@ -24,6 +24,7 @@ public class Person implements java.io.Serializable {
      private String districtName;
      private String provinceName;
      private String division;
+     private String patientSerial;
      private Set<PersonIdentifier> personIdentifiers;
      private Date dateCreated;
      private Date dateModified;
@@ -63,7 +64,7 @@ public class Person implements java.io.Serializable {
     public Person(MaritalStatus maritalStatusType, PatientSource patientSource, String firstName,
             String middleName, String lastName, String sex, Date birthdate, Date deathdate,
             String villageName, String locationName, String subLocationName, String landMark, String countyName,
-            String districtName, String provinceName, String division, Set<PersonIdentifier> personIdentifiers) {
+            String districtName, String provinceName, String division, String patientSerial, Set<PersonIdentifier> personIdentifiers) {
        this.maritalStatusType = maritalStatusType;
        this.patientSource = patientSource;
        this.firstName = firstName;
@@ -80,6 +81,7 @@ public class Person implements java.io.Serializable {
        this.subLocationName = subLocationName;
        this.villageName = villageName;
        this.landMark = landMark;
+       this.patientSerial = patientSerial;
        this.personIdentifiers = personIdentifiers;
     }
    
@@ -203,6 +205,14 @@ public class Person implements java.io.Serializable {
 
 	public void setProvinceName(String provinceName) {
 		this.provinceName = provinceName;
+	}
+
+	public String getPatientSerial() {
+		return patientSerial;
+	}
+
+	public void setPatientSerial(String patientSerial) {
+		this.patientSerial = patientSerial;
 	}
 
 }
